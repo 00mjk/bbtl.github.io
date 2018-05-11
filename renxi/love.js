@@ -171,7 +171,7 @@
             ctx.font = "12px 微软雅黑,Verdana"; // 字号肿么没有用? (ˉ(∞)ˉ)
             ctx.fillText("给高依欣", 23, 10);
             ctx.font = "8px Times New Roman"; // 字号肿么没有用? (ˉ(∞)ˉ)
-            ctx.fillText("*F11全屏，没有bgm可以多刷新几遍QAQ", 40, 30);
+            ctx.fillText("*F11全屏，佩戴耳机食用更佳QAQ", 40, 30);
             ctx.restore();
         },
         clear: function() {
