@@ -170,11 +170,13 @@
             ctx.scale(0.75, 0.75);
             ctx.font = "12px 微软雅黑,Verdana"; // 字号肿么没有用? (ˉ(∞)ˉ)
             ctx.fillText("给高依欣", 23, 10);
+            ctx.font = "8px Times New Roman"; // 字号肿么没有用? (ˉ(∞)ˉ)
+            ctx.fillText("*F11全屏，没有bgm可以多刷新几遍QAQ", 40, 30);
             ctx.restore();
         },
         clear: function() {
             var ctx = this.tree.ctx, cirle = this.cirle;
-            var point = cirle.point, scale = cirle.scale, radius = 26;
+            var point = cirle.point, scale = cirle.scale, radius = 60;
             var w = h = (radius * scale);
             ctx.clearRect(point.x - w, point.y - h, 4 * w, 4 * h);
         },

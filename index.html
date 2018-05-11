@@ -196,7 +196,8 @@
         var textAnimate = eval(Jscex.compile("async", function () {
 		    var together = new Date();
 		    $("#code").show().typewriter();
-            $("#clock-box").fadeIn(1000);
+            $await(Jscex.Async.sleep(40000));
+            $("#clock-box").fadeIn(10000);
             //while (true) {
               //  timeElapse(together);
                 //$await(Jscex.Async.sleep(1000));
@@ -210,7 +211,6 @@
             $await(moveAnimate());
 
             textAnimate().start();
-
             $await(jumpAnimate());
         }));
 
