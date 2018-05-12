@@ -31,7 +31,7 @@
     <div id="text">
       <div id="code"> <font color="#000000" style="font-weight:bold;"> <span class="say">To 高依欣：</span><br>
         <span class="say"> </span><br>
-        <span class="say"> 我们相识于数模比赛中，第一次的相遇后，我竟对下一次的相见有些憧憬</span><br>
+        <span class="say"> 我们相识于数模比赛中，第一次相遇后，竟让我对下一次的相见有些憧憬</span><br>
         <span class="say">大二上学期末的多次的接触，让我渐渐的有机会去了解你，去接触你</span><br>
         <span class="say">知道了你是一个很优秀的女生，很热爱生活</span><br>
         <span class="say">知道了你是一位sone，很喜欢金泰妍</span><br>
@@ -45,6 +45,7 @@
           <span class="say">一种的强烈的表达的欲望再次涌上心头</span><br>
           <span class="say">我知道，我在和女生接触的时候有些直男癌</span><br>
           <span class="say">但是我很想说：可以给我一次了解你的机会吗</span><br>
+          <font color="#ff0000" style="font-weight:bold;" size = "5"><span class="say">我喜欢你！！</span><br></font>
         <span class="say"><span class="space"></span><span class="space"></span> -- 田宝林--</span> </font>
         </p>
       </div>
@@ -73,7 +74,6 @@
         if (!canvas[0].getContext) {
             $("#error").show();
             return false;        }
-
         var width = canvas.width();
         var height = canvas.height();        
         canvas.attr("width", width);
@@ -113,12 +113,10 @@
                 speed: 10,
             }
         }
-
         var tree = new Tree(canvas[0], width, height, opts);
         var seed = tree.seed;
         var foot = tree.footer;
         var hold = 1;
-
         canvas.click(function(e) {
             var offset = canvas.offset(), x, y;
             x = e.pageX - offset.left;
@@ -135,7 +133,6 @@
             y = e.pageY - offset.top;
             canvas.toggleClass('hand', seed.hover(x, y));
         });
-
         var seedAnimate = eval(Jscex.compile("async", function () {
             seed.draw();
             while (hold) {
@@ -151,21 +148,18 @@
                 $await(Jscex.Async.sleep(10));
             }
         }));
-
         var growAnimate = eval(Jscex.compile("async", function () {
             do {
     	        tree.grow();
                 $await(Jscex.Async.sleep(10));
             } while (tree.canGrow());
         }));
-
         var flowAnimate = eval(Jscex.compile("async", function () {
             do {
     	        tree.flower(2);
                 $await(Jscex.Async.sleep(10));
             } while (tree.canFlower());
         }));
-
         var moveAnimate = eval(Jscex.compile("async", function () {
             tree.snapshot("p1", 240, 0, 610, 680);
             while (tree.move("p1", 500, 0)) {
@@ -174,7 +168,6 @@
             }
             foot.draw();
             tree.snapshot("p2", 500, 0, 610, 680);
-
             // 会有闪烁不得意这样做, (＞﹏＜)
             //理解理解
             canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
@@ -182,7 +175,6 @@
             $await(Jscex.Async.sleep(300));
             canvas.css("background", "none");
         }));
-
         var jumpAnimate = eval(Jscex.compile("async", function () {
             var ctx = tree.ctx;
             while (true) {
@@ -192,7 +184,6 @@
                 $await(Jscex.Async.sleep(25));
             }
         }));
-
         var textAnimate = eval(Jscex.compile("async", function () {
 		    var together = new Date();
 		    $("#code").show().typewriter();
@@ -203,21 +194,16 @@
                 //$await(Jscex.Async.sleep(1000));
             //}
         }));
-
         var runAsync = eval(Jscex.compile("async", function () {
             $await(seedAnimate());
             $await(growAnimate());
             $await(flowAnimate());
             $await(moveAnimate());
-
             textAnimate().start();
             $await(jumpAnimate());
         }));
-
         runAsync().start();
     })();
     </script>
-
-
 </body>
 </html>
