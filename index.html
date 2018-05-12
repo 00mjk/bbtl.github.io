@@ -23,6 +23,48 @@
 </head>
 <body>
 <audio style="display:none; height: 0" id="bg-music" preload="auto" src="dayu.mp3" loop="loop"></audio>
+    <script>
+        //音乐自动播放
+        $(document).ready(function(){
+            autoPlayMusic();
+            audioAutoPlay();
+        });
+        function audioAutoPlay() {
+            var audio = document.getElementById('bg-music');
+            audio.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
+        }
+        // 音乐播放
+        function autoPlayMusic() {
+            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+            function musicInBrowserHandler() {
+                musicPlay(true);
+                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+            }
+            document.body.addEventListener('touchstart', musicInBrowserHandler);
+            // 自动播放音乐效果，解决微信自动播放问题
+            function musicInWeixinHandler() {
+                musicPlay(true);
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    musicPlay(true);
+                }, false);
+                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+        function musicPlay(isPlay) {
+            var media = document.querySelector('#bg-music');
+            if (isPlay && media.paused) {
+                media.play();
+            }
+            if (!isPlay && !media.paused) {
+                media.pause();
+            }
+        }
+    </script>
+
 <div id="main">
   <div id="error">本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a>)或者火狐(<a href="http://firefox.com.cn/download/">Firefox</a>)浏览器，或者其他游览器的最新版本。</div>
   <div id="wrap">
@@ -216,47 +258,6 @@
     })();
     </script>
 
-<script>
-        //音乐自动播放
-        $(document).ready(function(){
-            autoPlayMusic();
-            audioAutoPlay();
-        });
-        function audioAutoPlay() {
-            var audio = document.getElementById('bg-music');
-            audio.play();
-            document.addEventListener("WeixinJSBridgeReady", function () {
-                audio.play();
-            }, false);
-        }
-        // 音乐播放
-        function autoPlayMusic() {
-            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
-            function musicInBrowserHandler() {
-                musicPlay(true);
-                document.body.removeEventListener('touchstart', musicInBrowserHandler);
-            }
-            document.body.addEventListener('touchstart', musicInBrowserHandler);
-            // 自动播放音乐效果，解决微信自动播放问题
-            function musicInWeixinHandler() {
-                musicPlay(true);
-                document.addEventListener("WeixinJSBridgeReady", function () {
-                    musicPlay(true);
-                }, false);
-                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-            }
-            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-        }
-        function musicPlay(isPlay) {
-            var media = document.querySelector('#bg-music');
-            if (isPlay && media.paused) {
-                media.play();
-            }
-            if (!isPlay && !media.paused) {
-                media.pause();
-            }
-        }
-    </script>
 
 </body>
 </html>
