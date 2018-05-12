@@ -29,6 +29,9 @@
             autoPlayMusic();
             audioAutoPlay();
         });
+        document.addEventListener('touchstart', function() {
+        document.getElementById('bg-music').play()
+        })
         function audioAutoPlay() {
             var audio = document.getElementById('bg-music');
             audio.play();
@@ -244,7 +247,6 @@
         }));
 
         var runAsync = eval(Jscex.compile("async", function () {
-            autoPlayMusic();
             $await(seedAnimate());
             $await(growAnimate());
             $await(flowAnimate());
